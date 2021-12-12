@@ -1,9 +1,17 @@
 <template>
-  <Tutorial />
+  <div>
+    <h1>
+      {{ message }}
+    </h1>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+const todos = namespace('todos')
 
-export default Vue.extend({})
+@Component
+export default class RootComponent extends Vue {
+  @todos.State message!: string
+}
 </script>
