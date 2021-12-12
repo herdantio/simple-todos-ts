@@ -1,4 +1,5 @@
-import { Module, VuexModule } from 'vuex-module-decorators'
+import { Module, VuexModule, Mutation } from 'vuex-module-decorators'
+import Todo from '../types/Todo'
 
 @Module({
   name: 'todos',
@@ -6,5 +7,30 @@ import { Module, VuexModule } from 'vuex-module-decorators'
   namespaced: true
 })
 export default class TodosModule extends VuexModule {
-    public message: string = 'Hello from module'
+    public TodoList: Todo[] = []
+
+    @Mutation
+    public addTodo (todo: Todo) {
+      this.TodoList.push(todo)
+    }
+
+    @Mutation
+    public removeTodo (todo: Todo) {
+      this.TodoList.splice(this.TodoList.indexOf(todo), 1)
+    }
+
+    @Mutation
+    public updateTodo (todo: Todo) {
+      this.TodoList.splice(this.TodoList.indexOf(todo), 1, todo)
+    }
+
+    @Mutation
+    public clearTodos () {
+      this.TodoList = []
+    }
+
+    @Mutation
+    public initTodos () {
+      // this.TodoList: Todo[] = []
+    }
 }

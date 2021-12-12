@@ -7,11 +7,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, namespace } from 'nuxt-property-decorator'
-const todos = namespace('todos')
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class RootComponent extends Vue {
-  @todos.State message!: string
+export default class HomePage extends Vue {
+  message: string = 'Hello World'
 }
 </script>
