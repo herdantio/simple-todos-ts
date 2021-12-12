@@ -33,11 +33,11 @@ export default class TodosModule extends VuexModule {
     @Mutation
     public initTodos () {
       this.TodoList = [
-        new Todo('Task 1', 'Learn Vuex', false),
-        new Todo('Task 2', 'Learn React', false),
-        new Todo('Task 3', 'Learn Angular', false),
-        new Todo('Task 4', 'Learn Laravel', false),
-        new Todo('Task 5', 'Learn Django', false)
+        new Todo('Task 1', false),
+        new Todo('Task 2', false),
+        new Todo('Task 3', false),
+        new Todo('Task 4', false),
+        new Todo('Task 5', false)
       ]
     }
 }

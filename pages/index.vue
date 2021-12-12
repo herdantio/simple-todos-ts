@@ -1,9 +1,9 @@
 <template>
   <TemplatesPagePaddingWrapper>
-    <div class="flex flex-row">
-      <div>
+    <div class="flex flex-row space-x-10">
+      <div class="w-1/6">
         <AtomsAButton class="bg-green-400">
-          Add Todos
+          Add todos
         </AtomsAButton>
       </div>
       <div class="w-full">
@@ -21,7 +21,7 @@ const todos = namespace('todos')
 
 @Component
 export default class HomePage extends Vue {
-  @todos.State public TodoList: Todo[]
+  @todos.State public TodoList?: Todo[]
 
   @todos.Mutation public initTodos!: () => void
 

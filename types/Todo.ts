@@ -7,7 +7,6 @@ const s4 = () => {
 interface ITodo {
     id: string;
     title: string;
-    desc: string;
     completed: boolean;
     createdAt: Date;
     deletedAt?: Date;
@@ -16,15 +15,13 @@ interface ITodo {
 class Todo implements ITodo {
     id: string;
     title: string;
-    desc: string;
     completed: boolean;
     createdAt: Date;
     deletedAt?: Date;
 
-    constructor (title: string, desc: string, completed: boolean) {
+    constructor (title: string, completed: boolean) {
       this.id = s4()
       this.title = title
-      this.desc = desc
       this.completed = completed
       this.createdAt = new Date()
     }
