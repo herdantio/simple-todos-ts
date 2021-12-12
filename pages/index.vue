@@ -1,28 +1,33 @@
 <template>
-  <PagePaddingWrapper>
-    <div>
-      <AButton class="bg-green-400">
-        Add Task
-      </AButton>
-      <h1>
-        {{ message }}
-      </h1>
+  <TemplatesPagePaddingWrapper>
+    <div class="flex flex-row">
+      <div>
+        <AtomsAButton class="bg-green-400">
+          Add Todos
+        </AtomsAButton>
+      </div>
+      <div class="w-full">
+        <OrganismsTodosList :todos="TodoList" />
+      </div>
     </div>
-  </PagePaddingWrapper>
+  </TemplatesPagePaddingWrapper>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
-import PagePaddingWrapper from '~/components/templates/PagePaddingWrapper.vue'
-import AButton from '~/components/atoms/AButton.vue'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import TodosList from '../components/organisms/TodosList.vue'
+import Todo from '~/types/Todo'
+const todos = namespace('todos')
 
-@Component({
-  components: {
-    PagePaddingWrapper,
-    AButton
-  }
-})
+@Component
 export default class HomePage extends Vue {
-  message: string = 'Hello World'
+  @todos.State public TodoList: Todo[]
+
+  @todos.Mutation public initTodos!: () => void
+
+  mounted () {
+    this.initTodos()
+    console.log(this.TodoList)
+  }
 }
 </script>
