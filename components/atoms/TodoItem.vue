@@ -12,7 +12,7 @@ import Todo from '~/types/Todo'
 
 @Component
 export default class TodoItem extends Vue {
-  @Prop({ required: true }) readonly todo?: Todo
+  @Prop({ required: true }) readonly todo!: Todo
 }
 </script>
 
