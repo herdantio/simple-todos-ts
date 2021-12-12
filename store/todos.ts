@@ -29,6 +29,7 @@ export default class TodosModule extends VuexModule {
       this.TodoList = []
     }
 
+    // For Mock Data
     @Mutation
     public initTodos () {
       this.TodoList = [
