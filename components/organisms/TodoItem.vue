@@ -16,10 +16,10 @@
         </option>
       </select>
     </div>
-    <div>
-      <AtomsAButton>
-        Delete
-      </AtomsAButton>
+    <div class="text-xl">
+      <i class="cursor-pointer" @click="deleteTodo">
+        X
+      </i>
     </div>
   </div>
 </template>
@@ -39,11 +39,19 @@ export default class TodoItem extends Vue {
 
   @todos.Mutation public updateTodoCompleted!: (todo: Todo) => void
 
+  @todos.Mutation public removeTodo!: (todo: Todo) => void
+
   changeTodoStatus (event: any) {
     const payload = new Todo(this.todo.title, this.todo.completed)
     payload.completed = event.target.value === 'true'
     payload.id = this.todo.id
     this.updateTodoCompleted(payload)
+  }
+
+  deleteTodo () {
+    const payload = new Todo(this.todo.title, this.todo.completed)
+    payload.id = this.todo.id
+    this.removeTodo(this.todo)
   }
 }
 </script>

@@ -16,7 +16,7 @@ export default class TodosModule extends VuexModule {
 
     @Mutation
     public removeTodo (todo: Todo) {
-      this.TodoList.splice(this.TodoList.indexOf(todo), 1)
+      this.TodoList = [...this.TodoList.filter(el => el.id !== todo.id)]
     }
 
     @Mutation
