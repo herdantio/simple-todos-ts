@@ -26,6 +26,12 @@ export default class TodosModule extends VuexModule {
     }
 
     @Mutation
+    public updateTodoTitle (todo: Todo) {
+      const foundTodo = this.TodoList.find(el => el.id === todo.id)
+      if (foundTodo) { foundTodo.title = todo.title }
+    }
+
+    @Mutation
     public clearTodos () {
       this.TodoList = []
     }
@@ -39,7 +45,7 @@ export default class TodosModule extends VuexModule {
     @Mutation
     public initTodos () {
       this.TodoList = [
-        new Todo('Task 1', false),
+        new Todo('Task 1', true),
         new Todo('Task 2', false),
         new Todo('Task 3', false),
         new Todo('Task 4', false),

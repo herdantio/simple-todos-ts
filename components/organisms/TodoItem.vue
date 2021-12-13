@@ -1,9 +1,17 @@
 <template>
   <div :class="[bgClass, 'flex', 'flex-row', 'justify-between']">
     <div class="text-xl">
-      <p>
+      <p v-show="!showUpdateTitle" @click="openInput">
         {{ todo.title }}
       </p>
+      <input
+        v-show="showUpdateTitle"
+        ref="updateTitle"
+        type="text"
+        :value="todo.title"
+        @keyup.enter="updateTitle "
+        @keydown.esc="closeInput"
+      >
     </div>
     <div class="text-xl">
       <span>Completed: </span>
@@ -33,11 +41,19 @@ const todos = namespace('todos')
 export default class TodoItem extends Vue {
   @Prop({ required: true }) readonly todo!: Todo
 
+  showUpdateTitle: boolean = false
+
+  $refs!: {
+    updateTitle: HTMLFormElement
+  }
+
   get bgClass () : any {
     return this.todo.completed ? 'bg-green-100' : 'bg-blue-100'
   }
 
   @todos.Mutation public updateTodoCompleted!: (todo: Todo) => void
+
+  @todos.Mutation public updateTodoTitle!: (todo: Todo) => void
 
   @todos.Mutation public removeTodo!: (todo: Todo) => void
 
@@ -52,6 +68,22 @@ export default class TodoItem extends Vue {
     const payload = new Todo(this.todo.title, this.todo.completed)
     payload.id = this.todo.id
     this.removeTodo(this.todo)
+  }
+
+  updateTitle (event: any) {
+    const payload = new Todo(event.target.value, this.todo.completed)
+    payload.id = this.todo.id
+    this.updateTodoTitle(payload)
+    this.showUpdateTitle = false
+  }
+
+  openInput () {
+    this.showUpdateTitle = true
+    this.$refs.updateTitle.focus()
+  }
+
+  closeInput () {
+    this.showUpdateTitle = false
   }
 }
 </script>
