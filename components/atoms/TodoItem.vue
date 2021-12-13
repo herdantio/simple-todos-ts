@@ -44,7 +44,6 @@ export default class TodoItem extends Vue {
     payload.completed = event.target.value === 'true'
     payload.id = this.todo.id
     this.updateTodoCompleted(payload)
-    console.log(this.todo)
   }
 }
 </script>
