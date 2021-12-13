@@ -25,8 +25,6 @@ const todos = namespace('todos')
 export default class HomePage extends Vue {
   @todos.State TodoList!: Todo[]
 
-  @todos.Mutation public initTodos!: () => void
-
   toAddPage () {
     this.$router.push('/add')
   }

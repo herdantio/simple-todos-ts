@@ -12,7 +12,6 @@ export default class TodosModule extends VuexModule {
     @Mutation
     public addTodo (todo: Todo) {
       this.TodoList.push(todo)
-      console.log(this.TodoList.length)
     }
 
     @Mutation
