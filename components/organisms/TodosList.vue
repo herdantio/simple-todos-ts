@@ -7,7 +7,7 @@
       @start="dragging = true"
       @end="dragging = false"
     >
-      <AtomsTodoItem
+      <OrganismsTodoItem
         v-for="todo in TodoList"
         :key="todo.id"
         class="p-5 m-2"
