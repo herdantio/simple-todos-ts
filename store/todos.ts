@@ -20,8 +20,9 @@ export default class TodosModule extends VuexModule {
     }
 
     @Mutation
-    public updateTodo (todo: Todo) {
-      this.TodoList.splice(this.TodoList.indexOf(todo), 1, todo)
+    public updateTodoCompleted (todo: Todo) {
+      const foundTodo = this.TodoList.find(el => el.id === todo.id)
+      if (foundTodo) { foundTodo.completed = todo.completed }
     }
 
     @Mutation
