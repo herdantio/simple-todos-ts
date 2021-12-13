@@ -6,7 +6,6 @@
       </p>
       <input
         v-show="showUpdateTitle"
-        ref="updateTitle"
         type="text"
         :value="todo.title"
         @keyup.enter="updateTitle "
@@ -43,10 +42,6 @@ export default class TodoItem extends Vue {
 
   showUpdateTitle: boolean = false
 
-  $refs!: {
-    updateTitle: HTMLFormElement
-  }
-
   get bgClass () : any {
     return this.todo.completed ? 'bg-green-100' : 'bg-blue-100'
   }
@@ -73,13 +68,14 @@ export default class TodoItem extends Vue {
   updateTitle (event: any) {
     const payload = new Todo(event.target.value, this.todo.completed)
     payload.id = this.todo.id
-    this.updateTodoTitle(payload)
+    if (event.target.value.length > 0) {
+      this.updateTodoTitle(payload)
+    }
     this.showUpdateTitle = false
   }
 
   openInput () {
     this.showUpdateTitle = true
-    this.$refs.updateTitle.focus()
   }
 
   closeInput () {
